@@ -1,0 +1,14 @@
+.buttons-link{
+    color: white;
+    text-decoration: none;
+}
+
+.button-link{
+    color: white;
+
+}
+
+a:hover{
+    text-decoration: none;
+    color: white;
+}

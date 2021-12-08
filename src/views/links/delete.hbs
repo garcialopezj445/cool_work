@@ -1,4 +1,4 @@
-<div class="container p-4" style="margin-top: 50px;">
+<div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card">
@@ -8,13 +8,47 @@
                 </div>
                 <div class="card-body">
                     <div class="text-center">
-                        <h4>{{user.nombre_usuario}}</h4>
-                        <p>¿Está seguro de eliminar el registro?</p>
+                        <h5>¿Está seguro de eliminar el registro?</h5>
                     </div>
 
-                    <form action="/links/delete/{{registrosUsuario.identificacion_registro}}" method="POST">
-                        <button class="btn btn-primary btn-block">
+                    <br/>
+
+                    <form action="/links/delete/{{registrosUsuario.identificacion_registro}}" method="POST">                
+                        <div class="form-group">
+                            <input type="text" value="{{registrosUsuario.nombre_servicio}}" class="form-control" name="nombre_servicio"
+                                placeholder="Nombre de registro" readonly="readonly"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" value="{{registrosUsuario.identificacion_servicio_usuario}}" class="form-control" name="identificacion_servicio_usuario"
+                                placeholder="Identificación del usuario" readonly="readonly"/>
+                        </div>
+
+                        <div class="form-group">
+                            <select name="codigo_servicio_categoria" class="form-control" readonly="readonly">
+                                <option disabled>Categoria del servicio</option>
+                                <option>psicologia</option>
+                                <option>desarrollo web</option>
+                                <option>abogado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="descripcion_servicio" rows="3" class="form-control"
+                                placeholder="Descripción del servicio" readonly="readonly">{{registrosUsuario.descripcion_servicio}}</textarea>
+                        </div>
+
+                        <button class="btn btn-danger btn-block">
                             Eliminar
+                        </button>
+                        
+                    </form>
+
+                    <br/>
+
+                    <form action="/registros/{{registrosUsuario.identificacion_servicio_usuario}}" method="GET">
+                        <button class="btn btn-primary btn-block">
+                            Volver
                         </button>
                     </form>
                 </div>

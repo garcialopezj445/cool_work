@@ -76,7 +76,18 @@ router.get('/delete/:identificacion_registro', async (req, res) => {
 });
 
 router.post('/delete/:identificacion_registro', async (req, res) => {
-    res.send('ok')
+    const {identificacion_registro} = req.params;
+    const {
+        identificacion_servicio_usuario,
+    } = req.body;
+    const registro = { 
+        identificacion_servicio_usuario,
+    }
+    const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_servicio_usuario]);
+    console.log(prueba);
+    await pool.query('DELETE FROM servicio WHERE identificacion_registro = ?', [identificacion_registro]);
+    req.flash('realizado', 'Registro eliminado correctamente');
+    res.render('profile', {user: prueba[0]});
 });
 
 

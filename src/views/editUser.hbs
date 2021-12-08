@@ -1,0 +1,53 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>
+                        Editar Perfil
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form action="/editUser/{{usuario.identificacion_usuario}}" method="POST">
+                        <div class="form-group">
+                            <input type="text" value={{usuario.identificacion_usuario}} name="identificacion_usuario" placeholder="Identificación de usuario" class="form-control" readonly="readonly"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" value={{usuario.nombre_usuario}} name="nombre_usuario" placeholder="Nombre del usuario" class="form-control" autofocus/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" value={{usuario.password}} name="password" placeholder="Contraseña" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" value={{usuario.telefono_usuario}} name="telefono_usuario" placeholder="Teléfono" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" value={{usuario.codigo_residencia_usuario}} name="codigo_residencia_usuario" placeholder="Código postal" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="date" value={{usuario.fecha_nacimiento_usuario}} name="fecha_nacimiento_usuario" class="form-control"/>
+                        </div>
+
+                        <div class="form-group">
+                            <p class="text-left">Genero:</p>
+                            <select name="codigo_sexo_usuario" class="form-control">
+                                <option disabled>1 para Masculino, 2 para femenino</option>
+                                <option>1</option>
+                                <option>2</option>                                
+                            </select>
+                        </div>
+
+                        <button class="btn btn-primary btn-block">
+                            Editar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

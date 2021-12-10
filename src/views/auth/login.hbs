@@ -1,14 +1,39 @@
-<div class="container p-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Cool work!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-expanded="false">
+            Menú
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/">Página principal</a>
+            <a class="dropdown-item" href="/signup">Registrarse</a>
+            <div class="dropdown-divider"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container p-4" style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-4 mx-auto">
-            <div class="card text-center">                
+            <div class="card text-center">
                 <div class="card-header">
                     <h3>
                         Iniciar sesión
                     </h3>
                 </div>
 
-                <br/>
+                <br />
 
                 <div class="mx-auto">
                     <img src="/images/trabajo-en-equipo.png" alt="img_cool_work" style="height: 5rem;">
@@ -17,17 +42,22 @@
                 <div class="card-body">
                     <form action="/login" method="POST">
                         <div class="form-group">
-                            <input type="text" name="identificacion_usuario" placeholder="Identificación de usuario" class="form-control" autofocus/>
-                        </div>                       
+                            <input type="text" name="identificacion_usuario" placeholder="Identificación de usuario"
+                                class="form-control" autofocus />
+                        </div>
 
                         <div class="form-group">
-                            <input type="password" name="clave" placeholder="Contraseña" class="form-control"/>
-                        </div>                        
+                            <input type="password" name="clave" placeholder="Contraseña" class="form-control" />
+                        </div>
 
                         <button class="btn btn-primary btn-block">
                             Acceder
                         </button>
                     </form>
+
+                    <div style="margin-top: 10px;">
+                        <a href="/signup">Registrarse</a>
+                    </div>                  
                 </div>
             </div>
         </div>

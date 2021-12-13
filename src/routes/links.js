@@ -4,10 +4,6 @@ const router = express.Router();
 
 const pool = require('../database');
 
-router.get('/', (req, res) => {
-    res.render('links/homeUser');
-});
-
 router.get('/add/:identificacion_usuario', async (req, res) => {
     const {identificacion_usuario} = req.params;
     console.log(identificacion_usuario);

@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 
 //routes
 app.use(require('./routes/index'));
-app.use(require('./routes/authenticate'));
+app.use(require('./routes/users'));
 app.use('/links', require('./routes/links'));
 
 //public

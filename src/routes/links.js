@@ -39,7 +39,8 @@ router.post('/add/:identificacion_usuario', async (req, res) => {
 router.get('/added-links', async (req, res) => {
     const links = await pool.query('SELECT * FROM servicio');
     console.log(links);
-    res.render('links/service', { links });
+    res.json(links);
+    //res.render('links/service', { links });
 });
 
 router.get('/edit/:identificacion_registro', async (req, res) => {

@@ -1,0 +1,96 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Cool work!</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-expanded="false">
+                            Sesión
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/login">Iniciar sesión</a>
+                            <a class="dropdown-item" href="/signup">Registrarse</a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>
+                        Vista de usuario
+                    </h3>
+                </div>
+                <div class="card-body">
+
+                    <div class="text-left">
+                        <label>Identificación del usuario:</label>
+                        <div class="form-group">
+                            <input type="text" value={{usuario.identificacion_usuario}} name="identificacion_usuario"
+                                placeholder="Identificación de usuario" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <label>Nombre del usuario:</label>
+                        <div class="form-group">
+                            <input type="text" value={{usuario.nombre_usuario}} name="nombre_usuario"
+                                placeholder="Nombre del usuario" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <label>Teléfono del usuario:</label>
+                        <div class="form-group">
+                            <input type="number" value={{usuario.telefono_usuario}} name="telefono_usuario"
+                                placeholder="Teléfono" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <label>Residencia:</label>
+                        <div class="form-group">
+                            <input type="text" value={{usuario.codigo_residencia_usuario}}
+                                name="codigo_residencia_usuario" placeholder="Código postal" class="form-control"
+                                readonly="readonly" />
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <label>Fecha de nacimiento:</label>
+                        <div class="form-group">
+                            <input type="date" value={{usuario.fecha_nacimiento_usuario}}
+                                name="fecha_nacimiento_usuario" class="form-control" readonly="readonly" />
+                        </div>
+                    </div>
+
+                    <div class="text-left">
+                        <label>Género</label>
+                        <div class="form-group">
+                            <select name="codigo_sexo_usuario" class="form-control">
+                                <option disabled>1 Masculino, 2 femenino</option>
+                                <option>1</option>
+                                <option>2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <a href="/" class="btn btn-primary">Volver</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,6 +8,7 @@ const MySQLStore = require('express-mysql-session');
 //const passport = require('passport');
 
 const {database} = require('./keys');
+const { use } = require('passport');
 
 //initializations
 const app = express();

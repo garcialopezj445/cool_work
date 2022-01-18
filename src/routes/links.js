@@ -27,8 +27,8 @@ router.post('/add/:identificacion_usuario', async (req, res) => {
     console.log(newRegistro);
     await pool.query('INSERT INTO servicio set ?', [newRegistro]);
     const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_servicio_usuario]);
-    req.flash('realizado', 'Registro guardado correctamente');
     res.render('profile', { user: prueba[0] });
+    req.flash('realizado', 'Registro guardado correctamente');
 });
 
 
@@ -82,8 +82,8 @@ router.post('/delete/:identificacion_registro', async (req, res) => {
     }
     const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_servicio_usuario]);
     await pool.query('DELETE FROM servicio WHERE identificacion_registro = ?', [identificacion_registro]);
-    req.flash('realizado', 'Registro eliminado correctamente');
     res.render('profile', { user: prueba[0] });
+    req.flash('realizado', 'Registro eliminado correctamente');
 });
 
 

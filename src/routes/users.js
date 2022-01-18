@@ -1,5 +1,7 @@
 const express = require('express');
+const { autoCommit } = require('oracledb');
 const pool = require('../database');
+//const BD = require('../database');
 
 const router = express.Router();
 
@@ -27,9 +29,11 @@ router.post('/signup', async (req, res) => {
         codigo_sexo_usuario
     };
     await pool.query('INSERT INTO usuario set ?', [newUsuario]);
-    console.log(newUsuario);
+    //sql = 'insert into usuario set ?';
+    //let result = await BD.Open(sql,[newUsuario],autoCommit);
+    //console.log(result.rows);
     req.flash('realizado', 'Registro guardado correctamente');
-    res.send('enviado');
+    res.redirect('/login');
 });
 
 router.get('/login', async(req, res) => {
@@ -47,7 +51,6 @@ router.post('/login', async (req, res) => {
         req.flash('incorrecto', 'Valores incorrectos');
         res.redirect('/login');
     }
-
 });
 
 router.get('/registros/:identificacion_usuario', async(req, res) => {

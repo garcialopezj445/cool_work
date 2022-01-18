@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="#">Cool work!</a>
+            <a class="navbar-brand" href="/">Cool work!</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -14,6 +14,7 @@
                             Sesión
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Página principal</a>
                             <a class="dropdown-item" href="/login">Iniciar sesión</a>
                             <a class="dropdown-item" href="/signup">Registrarse</a>
                             <div class="dropdown-divider"></div>
@@ -42,15 +43,24 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="/login" method="POST">                      
+                    <form action="/buscarServicio" method="POST">
+                        <div class="form-group">
+                            <select name="codigo_servicio_categoria" class="form-control">
+                                <option disabled>Categoria del servicio</option>
+                                <option>psicologia</option>
+                                <option>desarrollo web</option>
+                                <option>abogado</option>
+                            </select>
+                        </div>
+
                         <button class="btn btn-primary btn-block">
-                            ...
+                            Buscar
                         </button>
                     </form>
 
                     <div style="margin-top: 10px;">
                         <a href="/">Volver</a>
-                    </div>                  
+                    </div>
                 </div>
             </div>
         </div>

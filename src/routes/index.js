@@ -15,8 +15,33 @@ router.get('/viewUser/:identificacion_servicio_usuario', async(req, res) => {
     res.render('home/viewUser', { usuario: usuario[0] });
 });
 
-router.get('/searchUser', async(req,res) =>{
-    res.render('home/searchUsers');
+router.get('/searchService', async(req,res) =>{
+    res.render('home/searchService');
+});
+
+router.post('/buscarServicio', async(req, res) =>{
+    const { codigo_servicio_categoria } = req.body;
+    console.log(codigo_servicio_categoria);
+    const servicio = await pool.query('SELECT * FROM servicio WHERE codigo_servicio_categoria = ?', [codigo_servicio_categoria]);
+    res.render('home/viewServices', {servicio: servicio});
+    console.log(servicio);
 });
 
 module.exports = router;
+
+
+/*
+const {Router} = require('express');
+const router = Router();
+const BD = require('../database');
+
+router.get('/', async (req, res) => {
+    
+    sql = 'SELECT * FROM sexo_de_usuario';
+    let sexo = await BD.Open(sql,[],false);
+    console.log(sexo.rows);
+    res.json(sexo.rows);
+});
+
+module.exports = router;
+*/

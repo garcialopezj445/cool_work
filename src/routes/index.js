@@ -1,3 +1,4 @@
+
 const express = require('express');
 const pool = require('../database');
 
@@ -5,6 +6,7 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     const services = await pool.query('SELECT * FROM servicio')
+    console.log(services);
     res.render('home/index', {services: services});
 });
 
@@ -34,13 +36,60 @@ module.exports = router;
 const {Router} = require('express');
 const router = Router();
 const BD = require('../database');
+const oracledb = require('oracledb');
 
-router.get('/', async (req, res) => {
+const db = {
+         user: 'system',
+         password: 'jhonsito00',
+         connectString: 'localhost:1521'
+     }
+
+
+// bien
+
+/*router.get('/', async (req, res) => {
     
     sql = 'SELECT * FROM sexo_de_usuario';
-    let sexo = await BD.Open(sql,[],false);
+    let sexo = await BD.Open(sql,{},false);
+    let a = sexo;
     console.log(sexo.rows);
-    res.json(sexo.rows);
+    //res.json(sexo.rows);
+    res.send(a);
+});
+
+/*
+router.get('/added-links', async (req, res) => {
+    const sql = 'SELECT * FROM servicio';
+    const resultado = oracledb.getConnection(db, function (err, connection) {
+        if (err) console.log('ERROR');
+        connection.execute(
+          sql,
+          {},
+          {
+            outFormat: oracledb.OBJECT // Return the result as Object
+          },
+          function (err, result) {
+            if (err) console.log('error');
+            else res.render('home/index', {services: result});
+          }
+        )
+      });
+    //const registrosUsuario = await BD.Open(sql,{}, false);
+    console.log(resultado);
+    //res.json(links);
+    //res.render('links/service',  resultado );
+});
+
+router.get('/', async (req, res) => {
+    sql = 'SELECT * FROM servicio';
+    const result = await BD.Open(sql,{},false);
+    console.log(result.metaData[1]);
+    console.log(result.rows[1][0]);
+    res.render('home/index', {services: result});
+});
+
+router.get('/signup', (req, res) => {
+    res.render('auth/signup')
 });
 
 module.exports = router;

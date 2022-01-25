@@ -61,8 +61,8 @@ router.post('/edit/:identificacion_registro', async (req, res) => {
     }
     await pool.query('UPDATE servicio set ? WHERE identificacion_registro = ?', [newRegistro, identificacion_registro]);
     const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_servicio_usuario]);
-    req.flash('realizado', 'Registro actualizado correctamente');
     res.render('profile', { user: prueba[0] });
+    req.flash('realizado', 'Registro actualizado correctamente');
 });
 
 router.get('/delete/:identificacion_registro', async (req, res) => {

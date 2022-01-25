@@ -1,7 +1,6 @@
 const express = require('express');
 const { autoCommit } = require('oracledb');
 const pool = require('../database');
-//const BD = require('../database');
 
 const router = express.Router();
 
@@ -32,8 +31,8 @@ router.post('/signup', async (req, res) => {
     //sql = 'insert into usuario set ?';
     //let result = await BD.Open(sql,[newUsuario],autoCommit);
     //console.log(result.rows);
-    req.flash('realizado', 'Registro guardado correctamente');
     res.redirect('/login');
+    req.flash('realizado', 'Registro guardado correctamente');
 });
 
 router.get('/login', async(req, res) => {
@@ -45,11 +44,11 @@ router.post('/login', async (req, res) => {
     const {clave} = req.body;
     const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ? and password = ?', [identificacion_usuario, clave]);
     if(prueba.length > 0){
-        req.flash('realizado', 'Sesión validada');
         res.render('profile', {user: prueba[0]});
+        req.flash('realizado', 'Sesión validada');
     }else{
-        req.flash('incorrecto', 'Valores incorrectos');
         res.redirect('/login');
+        req.flash('incorrecto', 'Valores incorrectos');
     }
 });
 
@@ -85,8 +84,8 @@ router.post('/editUser/:identificacion_usuario', async (req, res) => {
     };
     await pool.query('UPDATE usuario set ? WHERE identificacion_usuario = ?', [usuario, identificacion_usuario]);
     const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_usuario]);
-    req.flash('realizado', 'Registro actualizado correctamente');
     res.render('profile', {user: prueba[0]});
+    req.flash('realizado', 'Registro actualizado correctamente');
 });
 
 router.get('/volver/:identificacion_usuario', async (req, res) => {

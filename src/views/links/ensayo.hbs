@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="7">Cool work!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-expanded="false">
+            Sesión
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/login">Cerrar sesión</a>
+            <a class="dropdown-item" href="/editUser/{{identificacion_servicio_usuario}}">Ver perfil</a>
+            <div class="dropdown-divider"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container p-4">
+    <div class="row">
+        {{#each registrosUsuario}}
+        <div class="col-md-4" style="margin-top: 10px;">
+            <div class="card">
+                <div class="card-body mx-auto">
+                    <a href="" class="text-center" target="_blank">
+                        <h3 class="card-title text-uppercase">
+                            {{nombre_servicio}}
+                        </h3>
+                    </a>
+                    <h6>Identificación del registro:</h6>
+                    <p>{{identificacion_registro}}</p>
+
+                    <h6>Categoría del servicio:</h6>
+                    <p>{{codigo_servicio_categoria}}</p>
+
+                    <h6>Identificación usuario:</h6>
+                    <p>{{identificacion_servicio_usuario}}</p>
+
+                    <h6>Descripción del registro:</h6>
+                    <p>{{descripcion_servicio}}</p>
+
+                    <p class="text-center">
+                        {{timeago created_at}}
+                    </p>
+
+                    <div class="mx-auto col-sm">
+                        <a href="/links/delete/{{identificacion_registro}}" class="btn btn-danger">Borrar</a>
+                        <a href="/links/edit/{{identificacion_registro}}" class="btn btn-secondary">Editar</a>
+                        <form action="/Volver/{{identificacion_servicio_usuario}}" method="GET"
+                            style="display: inline;">
+                            <button class="btn btn-primary">
+                                Volver
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{else}}
+
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No hay links guardados</p>
+        </div>
+
+        {{/each}}
+    </div>
+</div>

@@ -1,3 +1,4 @@
+/*
 const express = require('express');
 
 const router = express.Router();
@@ -29,14 +30,6 @@ router.post('/add/:identificacion_usuario', async (req, res) => {
     const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_servicio_usuario]);
     res.render('profile', { user: prueba[0] });
     req.flash('realizado', 'Registro guardado correctamente');
-});
-
-
-router.get('/added-links', async (req, res) => {
-    const links = await pool.query('SELECT * FROM servicio');
-    console.log(links);
-    res.json(links);
-    //res.render('links/service', { links });
 });
 
 router.get('/edit/:identificacion_registro', async (req, res) => {
@@ -86,5 +79,113 @@ router.post('/delete/:identificacion_registro', async (req, res) => {
     req.flash('realizado', 'Registro eliminado correctamente');
 });
 
+module.exports = router;
+*/
+
+const {Router} = require('express');
+const router = Router();
+const BD = require('../database');
+
+router.get('/add/:identificacion_usuario', async (req, res) => {
+    let prueba = []
+    const {identificacion_usuario} = req.params;
+    sql = "SELECT * FROM usuario WHERE identificacion_usuario = :identificacion_usuario";
+    const result = await BD.Open(sql, [identificacion_usuario], false);
+    result.rows.map(usuarios => {
+        let usuarioSquema = {
+            "identificacion_usuario" : usuarios[0],
+            "nombre_usuario" : usuarios[1],
+            'telefono_usuario' : usuarios[2],
+            //'fecha_nacimiento_usuario' : usuarios[3],
+            'codigo_sexo_usuario' : usuarios[3],
+            'codigo_residencia_usuario' : usuarios[4],
+            'password' : usuarios[5]
+        }
+        prueba.push(usuarioSquema);
+    });
+    res.render('links/add', { user: prueba[0] });
+});
+
+/*
+router.post('/add/:identificacion_usuario', async (req, res) => {
+    let prueba = [];
+    const {
+        nombre_servicio,
+        identificacion_servicio_usuario,
+        descripcion_servicio,
+        codigo_servicio_categoria
+    } = req.body;
+    sql = "INSERT INTO usuario ()"
+});
+
+
+router.post('/add/:identificacion_usuario', async (req, res) => {
+    const {
+        nombre_servicio,
+        identificacion_servicio_usuario,
+        descripcion_servicio,
+        codigo_servicio_categoria
+    } = req.body;
+    const newRegistro = {
+        nombre_servicio,
+        identificacion_servicio_usuario,
+        descripcion_servicio,
+        codigo_servicio_categoria
+    };
+    console.log(newRegistro);
+    await pool.query('INSERT INTO servicio set ?', [newRegistro]);
+    const prueba = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_servicio_usuario]);
+    res.render('profile', { user: prueba[0] });
+    req.flash('realizado', 'Registro guardado correctamente');
+});
+*/
+
+router.get('/edit/:identificacion_registro', async (req, res) => {
+    let registrosUsuario = [];
+    const { identificacion_registro } = req.params;
+    sql = "SELECT * FROM servicio WHERE identificacion_registro = :identificacion_registro";
+    const result = await BD.Open(sql, [identificacion_registro], false);
+    result.rows.map(service => {
+        let serviceSquema = {
+            'identificacion_registro' : service[0],
+            'nombre_servicio' : service[1],
+            'descripcion_servicio' : service[2],
+            'identificacion_servicio_usuario' : service[3],
+            'codigo_servicio_categoria' : service[4]
+        }
+        registrosUsuario.push(serviceSquema);
+    });
+    res.render('links/edit', { registrosUsuario: registrosUsuario[0] });
+});
+
+router.post('/edit/:identificacion_registro', async (req, res) => {
+    let prueba = [];
+    const { identificacion_registro } = req.params;
+    const {
+        nombre_servicio,
+        identificacion_servicio_usuario,
+        descripcion_servicio,
+        codigo_servicio_categoria
+    } = req.body;
+    sql = "UPDATE servicio set nombre_servicio = :nombre_servicio, descripcion_servicio = :descripcion_servicio, codigo_servicio_categoria = :codigo_servicio_categoria WHERE identificacion_registro = :identificacion_registro";
+    await BD.Open(sql, [nombre_servicio, descripcion_servicio, codigo_servicio_categoria, identificacion_registro], true);
+
+    sql = "SELECT * FROM usuario WHERE identificacion_usuario = :identificacion_usuario";
+    const result = await BD.Open(sql, [identificacion_servicio_usuario], false);
+    result.rows.map(usuarios => {
+        let usuarioSquema = {
+            "identificacion_usuario" : usuarios[0],
+            "nombre_usuario" : usuarios[1],
+            'telefono_usuario' : usuarios[2],
+            //'fecha_nacimiento_usuario' : usuarios[3],
+            'codigo_sexo_usuario' : usuarios[3],
+            'codigo_residencia_usuario' : usuarios[4], 
+            'password' : usuarios[5]
+        }
+        prueba.push(usuarioSquema);
+    });
+    res.render('profile', { user: prueba[0] });
+    req.flash('realizado', 'Registro actualizado correctamente');
+});
 
 module.exports = router;

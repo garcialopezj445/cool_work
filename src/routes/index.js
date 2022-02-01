@@ -1,4 +1,4 @@
-
+/*
 const express = require('express');
 const pool = require('../database');
 
@@ -14,6 +14,7 @@ router.get('/viewUser/:identificacion_servicio_usuario', async(req, res) => {
     const {identificacion_servicio_usuario} = req.params;
     console.log(identificacion_servicio_usuario);
     const usuario = await pool.query('SELECT * FROM usuario WHERE identificacion_usuario = ?', [identificacion_servicio_usuario]);
+    console.log(usuario);
     res.render('home/viewUser', { usuario: usuario[0] });
 });
 
@@ -30,67 +31,70 @@ router.post('/buscarServicio', async(req, res) =>{
 });
 
 module.exports = router;
+*/
 
-
-/*
 const {Router} = require('express');
 const router = Router();
 const BD = require('../database');
-const oracledb = require('oracledb');
 
-const db = {
-         user: 'system',
-         password: 'jhonsito00',
-         connectString: 'localhost:1521'
-     }
-
-
-// bien
-
-/*router.get('/', async (req, res) => {
-    
-    sql = 'SELECT * FROM sexo_de_usuario';
-    let sexo = await BD.Open(sql,{},false);
-    let a = sexo;
-    console.log(sexo.rows);
-    //res.json(sexo.rows);
-    res.send(a);
-});
-
-/*
-router.get('/added-links', async (req, res) => {
-    const sql = 'SELECT * FROM servicio';
-    const resultado = oracledb.getConnection(db, function (err, connection) {
-        if (err) console.log('ERROR');
-        connection.execute(
-          sql,
-          {},
-          {
-            outFormat: oracledb.OBJECT // Return the result as Object
-          },
-          function (err, result) {
-            if (err) console.log('error');
-            else res.render('home/index', {services: result});
-          }
-        )
-      });
-    //const registrosUsuario = await BD.Open(sql,{}, false);
-    console.log(resultado);
-    //res.json(links);
-    //res.render('links/service',  resultado );
-});
-
-router.get('/', async (req, res) => {
+router.get('/', async(req, res) => {
+    let services = [];
     sql = 'SELECT * FROM servicio';
-    const result = await BD.Open(sql,{},false);
-    console.log(result.metaData[1]);
-    console.log(result.rows[1][0]);
-    res.render('home/index', {services: result});
+    const result = await BD.Open(sql, {}, false);
+    result.rows.map(service => {
+        let serviceSquema = {
+            'identificacion_registro' : service[0],
+            'nombre_servicio' : service[1],
+            'descripcion_servicio' : service[2],
+            'identificacion_servicio_usuario' : service[3],
+            'codigo_servicio_categoria' : service[4]
+        }
+        services.push(serviceSquema);
+    });
+    res.render('home/index', {services: services});
 });
 
-router.get('/signup', (req, res) => {
-    res.render('auth/signup')
+router.get('/viewUser/:identificacion_servicio_usuario', async (req,res) => {
+    let usuario = [];
+    const {identificacion_servicio_usuario} = req.params;
+    sql = 'SELECT * FROM usuario WHERE identificacion_usuario = :identificacion_usuario';
+    const result = await BD.Open(sql, [identificacion_servicio_usuario], false);
+    result.rows.map(usuarios => {
+        let usuarioSquema = {
+            "identificacion_usuario" : usuarios[0],
+            "nombre_usuario" : usuarios[1],
+            'telefono_usuario' : usuarios[2],
+            //'fecha_nacimiento_usuario' : usuarios[3],
+            'codigo_sexo_usuario' : usuarios[3],
+            'codigo_residencia_usuario' : usuarios[4],
+            'password' : usuarios[5]
+        }
+        usuario.push(usuarioSquema);
+    });
+    res.render('home/viewUser', {usuario: usuario[0]});
+});
+
+router.get('/searchService', async(req,res) =>{
+    res.render('home/searchService');
+}); 
+
+router.post('/buscarServicio', async(req, res) =>{
+    let services = [];
+    const { codigo_servicio_categoria } = req.body;
+    console.log(codigo_servicio_categoria);
+    sql = "SELECT * FROM servicio WHERE codigo_servicio_categoria = :codigo_servicio_categoria";
+    const result = await BD.Open(sql, [codigo_servicio_categoria], false);
+    result.rows.map(service => {
+        let serviceSquema = {
+            'identificacion_registro' : service[0],
+            'nombre_servicio' : service[1],
+            'descripcion_servicio' : service[2],
+            'identificacion_servicio_usuario' : service[3],
+            'codigo_servicio_categoria' : service[4]
+        }
+        services.push(serviceSquema);
+    });
+    res.render('home/viewServices', {servicio: services});
 });
 
 module.exports = router;
-*/

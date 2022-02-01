@@ -1,5 +1,5 @@
+/*
 const mysql = require('mysql');
-
 const { database } = require('./keys');
 const { promisify } = require('util');
 const pool = mysql.createPool(database);
@@ -27,15 +27,15 @@ pool.getConnection((err, connection) =>{
 pool.query = promisify(pool.query);
 
 module.exports = pool;
+*/
 
-/*
+
  const oracledb = require('oracledb');
 
  db = {
      user: 'system',
      password: 'jhonsito00',
      connectString: 'localhost:1521',
-     multipleStatements: true
  }
 
  async function open(sql, binds, autoCommit){
@@ -46,4 +46,3 @@ module.exports = pool;
  }
 
  exports.Open = open;
-*/

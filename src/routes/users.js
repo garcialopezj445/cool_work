@@ -105,7 +105,6 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-    let usuario = [];
     const {
         identificacion_usuario, 
         nombre_usuario,

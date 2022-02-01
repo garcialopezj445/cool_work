@@ -32,7 +32,12 @@
                     <img src="/images/trabajo-en-equipo.png" alt="img_cool_work" style="height: 5rem;">
                 </div>
                 <div class="card-body">
-                    <form action="/links/add/{{user.identificacion_usuario}}" method="POST">                
+                    <form action="/links/add/{{user.identificacion_usuario}}" method="POST">   
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="identificacion_registro"
+                                placeholder="Identificación del registro" />
+                        </div>
+
                         <div class="form-group">
                             <input type="text" class="form-control" name="nombre_servicio"
                                 placeholder="Nombre de registro" />

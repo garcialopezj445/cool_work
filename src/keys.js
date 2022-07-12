@@ -2,6 +2,6 @@ module.exports = {
     database:{
         host: 'localhost',
         user: 'root',
-        database: 'cool_work'
+        database: 'foro_estudiantil'
     }
 }

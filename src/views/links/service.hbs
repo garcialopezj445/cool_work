@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <div class="container">
-    <a class="navbar-brand" href="7">Cool work!</a>
+    <a class="navbar-brand" href="7">Foro Estudiantil</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,6 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/login">Cerrar sesión</a>
-            <a class="dropdown-item" href="/editUser/{{identificacion_servicio_usuario}}">Ver perfil</a>
             <div class="dropdown-divider"></div>
           </div>
         </li>
@@ -25,7 +24,7 @@
 
 <div class="container p-4">
     <div class="row">
-        {{#each registrosUsuario}}
+        {{#each hilosUsuario}}
         <div class="col-md-4" style="margin-top: 10px;">
             <div class="card">
                 <div class="card-body mx-auto">
@@ -34,28 +33,25 @@
                             {{nombre_servicio}}
                         </h3>
                     </a>
-                    <h6>Identificación del registro:</h6>
-                    <p>{{identificacion_registro}}</p>
+                    <h6>Identificación del Hilo:</h6>
+                    <p>{{identificacionHilo}}</p>
 
-                    <h6>Categoría del servicio:</h6>
-                    <p>{{codigo_servicio_categoria}}</p>
+                    <h6>Descripción del hilo:</h6>
+                    <p>{{descripcionHilo}}</p>
 
-                    <h6>Identificación usuario:</h6>
-                    <p>{{identificacion_servicio_usuario}}</p>
-
-                    <h6>Descripción del registro:</h6>
-                    <p>{{descripcion_servicio}}</p>
-
+                    <h6>Referencias bibliográficas:</h6>
+                    <p>{{referencasBibliograficas}}</p>
+{{!--
                     <p class="text-center">
                         {{timeago created_at}}
                     </p>
-
+--}}
                     <div class="mx-auto col-sm">
-                        <a href="/links/delete/{{identificacion_registro}}" class="btn btn-danger">Borrar</a>
-                        <a href="/links/edit/{{identificacion_registro}}" class="btn btn-secondary">Editar</a>
-                        <form action="/Volver/{{identificacion_servicio_usuario}}" method="GET"
+                        <a href="/links/delete/{{identificacionHilo}}" class="btn btn-danger">Borrar</a>
+                        <a href="/links/edit/{{identificacionHilo}}" class="btn btn-secondary">Editar</a>
+                        <form action="/Volver/{{identificacionUsuario_hilo}}" method="GET"
                             style="display: inline;">
-                            <button class="btn btn-primary">
+                            <button class="btn btn-success">
                                 Volver
                             </button>
                         </form>

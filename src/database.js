@@ -1,4 +1,4 @@
-/*
+
 const mysql = require('mysql');
 const { database } = require('./keys');
 const { promisify } = require('util');
@@ -27,22 +27,3 @@ pool.getConnection((err, connection) =>{
 pool.query = promisify(pool.query);
 
 module.exports = pool;
-*/
-
-
- const oracledb = require('oracledb');
-
- db = {
-     user: 'system',
-     password: 'jhonsito00',
-     connectString: 'localhost:1521',
- }
-
- async function open(sql, binds, autoCommit){
-     let con = await oracledb.getConnection(db);
-     let result = await con.execute(sql, binds, {autoCommit});
-     con.release();
-     return result;
- }
-
- exports.Open = open;

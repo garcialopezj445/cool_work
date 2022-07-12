@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <div class="container">
-    <a class="navbar-brand" href="/">Cool work!</a>
+    <a class="navbar-brand" href="/">Foro Estudiantil</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/login">Cerrar sesión</a>
-            <a class="dropdown-item" href="/editUser/{{user.identificacion_usuario}}">Ver perfil</a>
+            <a class="dropdown-item" href="/editUser/{{user.identificacionUsuario}}">Ver perfil</a>
             <div class="dropdown-divider"></div>
           </div>
         </li>
@@ -29,45 +29,44 @@
             <div class="card">
                 <br />
                 <div class="mx-auto">
-                    <img src="/images/trabajo-en-equipo.png" alt="img_cool_work" style="height: 5rem;">
+                    <img src="/images/logoPoli.png" alt="img_cool_work" style="height: 5rem;">
                 </div>
                 <div class="card-body">
-                    <form action="/links/add/{{user.identificacion_usuario}}" method="POST">   
+                    <form action="/links/createThread/{{user.identificacionUsuario}}" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="identificacion_registro"
-                                placeholder="Identificación del registro" />
+                            <input type="text" value="{{user.identificacionUsuario}}" class="form-control" name="identificacionUsuario_hilo" placeholder="Identificación del usuario" readonly="readonly"/>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" name="nombre_servicio"
-                                placeholder="Nombre de registro" />
+                            <input type="text" class="form-control" name="identificacionHilo"
+                                placeholder="Identificación del hilo" />
                         </div>
 
                         <div class="form-group">
-                            <input type="text" value="{{user.identificacion_usuario}}" class="form-control" name="identificacion_servicio_usuario" placeholder="Identificación del usuario" readonly="readonly"/>
+                            <textarea name="descripcionHilo" rows="3" class="form-control"
+                                placeholder="Descripción del hilo"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <select name="codigo_servicio_categoria" class="form-control">
-                                <option disabled>Categoria del servicio</option>
-                                <option>psicologia</option>
-                                <option>desarrollo web</option>
-                                <option>abogado</option>
+                            <input name="referencasBibliograficas" class="form-control"
+                                placeholder="Referencias bibliograficas"></input>
+                        </div>
+
+                        <div class="form-group">
+                            <select name="codigoSO_hilo" class="form-control">
+                                <option disabled>1-Windows / 2-Linux</option>
+                                <option>1</option>
+                                <option>2</option>
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <textarea name="descripcion_servicio" rows="3" class="form-control"
-                                placeholder="Descripción del servicio"></textarea>
-                        </div>
-
-                        <button class="btn btn-primary btn-block">
+                        <button class="btn btn-success btn-block">
                             Guardar
                         </button>
                     </form>
 
-                    <form action="/Volver/{{user.identificacion_usuario}}" method="GET" style="margin-top: 10px;">
-                        <button class="btn btn-primary btn-block">
+                    <form action="/Volver/{{user.identificacionUsuario}}" method="GET" style="margin-top: 10px;">
+                        <button class="btn btn-success btn-block">
                             Volver
                         </button>
                     </form>

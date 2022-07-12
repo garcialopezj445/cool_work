@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a class="navbar-brand" href="/">Foro Estudiantil</a>
+            <a class="navbar-brand" href="/">Foro estudiantil</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -14,6 +14,7 @@
                             Sesión
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Página principal</a>
                             <a class="dropdown-item" href="/login">Iniciar sesión</a>
                             <a class="dropdown-item" href="/signup">Registrarse</a>
                             <div class="dropdown-divider"></div>
@@ -25,42 +26,40 @@
     </nav>
 </header>
 
-<div class="container p-4">
+<div class="container p-4" style="margin-top: 20px;">
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card text-center">
                 <div class="card-header">
-                    <h3>
-                        Vista de usuario
-                    </h3>
+                    <h5>
+                        Seleccione el tipo de usuario que buscas
+                    </h5>
                 </div>
+
+                <br />
+
+                <div class="mx-auto">
+                    <img src="/images/logoPoli.png" alt="img_cool_work" style="height: 5rem;">
+                </div>
+
                 <div class="card-body">
-
-                    <div class="text-left">
-                        <label>Identificación del usuario:</label>
+                    <form action="/searchUser" method="POST">
                         <div class="form-group">
-                            <input type="text" value={{usuario.identificacionUsuario}} name="identificacionUsuario"
-                                placeholder="Identificación de usuario" class="form-control" readonly="readonly" />
+                            <select name="rolUniversidad" class="form-control">
+                                <option disabled>tipos de usuario</option>
+                                <option>estudiante</option>
+                                <option>profesor</option>
+                            </select>
                         </div>
-                    </div>
 
-                    <div class="text-left">
-                        <label>Nombre del usuario:</label>
-                        <div class="form-group">
-                            <input type="text" value={{usuario.nombreUsuario}} name="nombreUsuario"
-                                placeholder="Nombre del usuario" class="form-control" readonly="readonly" />
-                        </div>
-                    </div>
+                        <button class="btn btn-success btn-block">
+                            Buscar
+                        </button>
+                    </form>
 
-                    <div class="text-left">
-                        <label>Rol en la universidad:</label>
-                        <div class="form-group">
-                            <input type="text" value={{usuario.rolUniversidad}} name="nombreUsuario"
-                                placeholder="Nombre del usuario" class="form-control" readonly="readonly" />
-                        </div>
+                    <div style="margin-top: 10px;">
+                        <a href="/">Volver</a>
                     </div>
-
-                    <a href="/" class="btn btn-success">Volver</a>
                 </div>
             </div>
         </div>

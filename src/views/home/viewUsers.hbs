@@ -14,6 +14,7 @@
                             Sesión
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/">Página principal</a>
                             <a class="dropdown-item" href="/login">Iniciar sesión</a>
                             <a class="dropdown-item" href="/signup">Registrarse</a>
                             <div class="dropdown-divider"></div>
@@ -22,57 +23,46 @@
                 </ul>
             </div>
         </div>
-    </nav>
-
-    <div class="container mx-auto">
-        <div class="row mx-auto">
-            <div class="col d-flex justify-content-around">
-                <form action="/searchUser" method="GET">
-                    <button class="btn btn-light">
-                        Buscar usuarios
-                    </button>
-                </form>
-
-                <form action="/searchHilos" method="GET">
-                    <button class="btn btn-light">
-                        Buscar hilos
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+    </nav>  
 </header>
 
 <div class="container p-4">
     <div class="row">
-        {{#each services}}
+        {{#each usuario}}
         <div class="col-md-4" style="margin-top: 10px;">
             <div class="card">
                 <div class="card-body mx-auto">
-                    <a href="" class="text-center" target="_blank">
-                        <h3 class="card-title text-uppercase">
-                            {{nombre_servicio}}
+                    <p href="" class="text-center" target="_blank">
+                        <h3 class="card-title text-uppercase" style="color: black;">
+                            {{nombreUsuario}}
                         </h3>
-                    </a>
-                    <h6>Identificación del hilo:</h6>
-                    <p>{{identificacionHilo}}</p>
-
-                    <h6>Descripción del hilo</h6>
-                    <p>{{descripcionHilo}}</p>
-
-                    <h6>Referencias bibliograficas:</h6>
-                    <a href="{{referencasBibliograficas}}">{{referencasBibliograficas}}</a>
-                    {{!--
-                    <p class="text-center">
-                        {{timeago created_at}}
                     </p>
-                    --}}
-                    <form action="/viewUser/{{identificacionUsuario_hilo}}" method="GET">
-                        <br />
+
+                    <form action="/buscarHilos/{{identificacionUsuario}}" method="GET">
+                        <h6>Identificación del usuario:</h6>
+                        <div class="form-group">
+                            <input type="text" value={{identificacionUsuario}} name="identificacionUsuario"
+                                placeholder="Identificación de usuario" class="form-control" readonly="readonly" />
+                        </div>
+
+                        <h6>Rol en la universidad:</h6>
+                        <div class="form-group">
+                            <input type="text" value={{rolUniversidad}} name="rolUniversidad"
+                                placeholder="rol Universidad" class="form-control" readonly="readonly" />
+                        </div>
+                        {{!--
+                        <p class="text-center">
+                            {{timeago created_at}}
+                        </p>
+                        --}}
                         <button class="btn btn-success btn-block button-link">
-                            Ver usuario
+                            Ver registros
                         </button>
                     </form>
+
+                    <div class="text-center" style="margin-top: 10px;">
+                        <a href="/searchUser">Volver</a>
+                    </div>
                 </div>
             </div>
         </div>

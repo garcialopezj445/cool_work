@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
   <div class="container">
-    <a class="navbar-brand" href="/">Cool work!</a>
+    <a class="navbar-brand" href="/">Foro Estudiantil</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/login">Cerrar sesión</a>
-            <a class="dropdown-item" href="/editUser/{{user.identificacion_usuario}}">Ver perfil</a>
+            <a class="dropdown-item" href="/editUser/{{user.identificacionUsuario}}">Ver perfil</a>
             <div class="dropdown-divider"></div>
           </div>
         </li>
@@ -29,33 +29,34 @@
             <div class="card">
                 <br />
                 <div class="mx-auto">
-                    <img src="/images/trabajo-en-equipo.png" alt="img_cool_work" style="height: 5rem;">
+                    <img src="/images/logoPoli.png" alt="img_cool_work" style="height: 5rem;">
                 </div>
+
                 <div class="card-body">
                     <div class="text-center">
                         <h3>¡Bienvenido!</h3>
-                        <h4>{{user.nombre_usuario}}</h4>
+                        <h4>{{user.nombreUsuario}}</h4>
                         <p>Seleccione la acción que desea hacer</p>
                     </div>
 
-                    <form action="/registros/{{user.identificacion_usuario}}" method="GET">
-                        <button class="btn btn-primary btn-block">
-                            Mirar servicios creados
+                    <form action="/threads/{{user.identificacionUsuario}}" method="GET">
+                        <button class="btn btn-success btn-block">
+                            Mirar hilos creados
                         </button>
                     </form>
 
                     <br/>
 
-                     <form action="/links/add/{{user.identificacion_usuario}}" method="GET">
-                        <button class="btn btn-primary btn-block">
-                            Crear un servicio
+                    <form action="/links/add/{{user.identificacionUsuario}}" method="GET">
+                        <button class="btn btn-success btn-block">
+                            Crear un hilo
                         </button>
                     </form>
                     
                     <br/>
 
-                    <form action="/editUser/{{user.identificacion_usuario}}" method="GET">
-                        <button class="btn btn-primary btn-block">
+                    <form action="/editUser/{{user.identificacionUsuario}}" method="GET">
+                        <button class="btn btn-success btn-block">
                             Mirar perfil
                         </button>
                     </form>
